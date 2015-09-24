@@ -9,11 +9,12 @@ keyspace = 'fucj'
 session	 = cluster.connect(keyspace)
 
 #get test data
+testEmail = 'corysmith@email.com'
 rateArray = Array.new
 rateArray = IO.readlines('rate.txt')
-
 userArray = Array.new
 userArray = IO.readlines('newuser.txt')
+add = Array.new
 
 def input_new_user (userArray,session)
    userArray.each do |user|
@@ -32,16 +33,20 @@ def input_rating(rateArray,session)
    end
 end 
 
-def average_rating() 
-   email = 'corysmith@email.com'
-   add = Array.new
-   session.execute("SELECT * FROM rating WHERE email = '#{email}'").each do |row|
-   puts "User #{row['email']} has a score of #{row['score']}."
-   add = row['score']
+def average_rating(testEmail,session,add) 
+   session.execute("SELECT * FROM rating WHERE email = '#{testEmail}'").each do |row|
+      puts "User #{row['email']} has a score of #{row['score']}."
+      add.push(row['score'])
+      #puts "'new' + #{add}"
    end
+      sum = 0 
+      total = add.inject{|sum,x| sum + x }
+      average = total / add.length 
+      puts "Total is #{total}. Average is #{average}."
+   return(add)
 end 
 
 
 input_rating(rateArray,session)
 input_new_user(userArray,session)
-
+average_rating(testEmail,session,add)
