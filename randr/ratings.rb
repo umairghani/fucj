@@ -9,8 +9,13 @@ keyspace = 'fucj'
 session	 = cluster.connect(keyspace)
 
 #get test data
-testEmail = 'corysmith@email.com'
+#testEmail = 'jkeating@email.com'
+testEmail = 'bensmith@email.com'
+#testEmail = 'fsmothing@email.com'
+#testEmail = 'ughani@email.com'
+#testEmail = 'corysmith@email.com'
 add = Array.new
+usercom = Array.new
 rateArray = Array.new
 rateArray = IO.readlines('rate.txt')
 userArray = Array.new
@@ -35,28 +40,27 @@ end
 
 def average_rating(testEmail,session,add) 
    session.execute("SELECT * FROM rating WHERE email = '#{testEmail}'").each do |row|
-      puts "User #{row['email']} has a score of #{row['score']}."
       add.push(row['score'])
-      #puts "'new' + #{add}"
    end
       sum = 0 
       total = add.inject{|sum,x| sum + x }
       average = total / add.length 
-      puts "Total is #{total}. Average is #{average}."
-   return(add)
+   return(average)
 end 
 
-def user_comments(session,testEmail)
+def user_comments(session,testEmail,usercom)
    session.execute("SELECT * FROM rating WHERE email = '#{testEmail}'").each do |row|
-      puts "User #{row['email']} has these comments: #{row['notes']}."
+      usercom.push(row['notes'])
    end
+      return(usercom) 
 end
 
 input_rating(rateArray,session)
 input_new_user(userArray,session)
-average_rating(testEmail,session,add)
-user_comments(session,testEmail)
-
+myavg = average_rating(testEmail,session,add)
+  puts "Users average score: #{myavg}" 
+usercom = user_comments(session,testEmail,usercom)
+  puts usercom.each { |x| puts x } 
 
 
 
