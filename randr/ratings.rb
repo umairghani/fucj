@@ -10,11 +10,11 @@ session	 = cluster.connect(keyspace)
 
 #get test data
 testEmail = 'corysmith@email.com'
+add = Array.new
 rateArray = Array.new
 rateArray = IO.readlines('rate.txt')
 userArray = Array.new
 userArray = IO.readlines('newuser.txt')
-add = Array.new
 
 def input_new_user (userArray,session)
    userArray.each do |user|
@@ -46,7 +46,19 @@ def average_rating(testEmail,session,add)
    return(add)
 end 
 
+def user_comments(session,testEmail)
+   session.execute("SELECT * FROM rating WHERE email = '#{testEmail}'").each do |row|
+      puts "User #{row['email']} has these comments: #{row['notes']}."
+   end
+end
 
 input_rating(rateArray,session)
 input_new_user(userArray,session)
 average_rating(testEmail,session,add)
+user_comments(session,testEmail)
+
+
+
+
+
+
