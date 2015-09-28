@@ -1,0 +1,6 @@
+Cory, Smith, corysmith@email.com, Chicago, 60642
+Ben, Smith, bensmith@email.com, Chicago, 60642
+Umair, Ghani, ughani@email.com, Pakistan, 60696
+Fadi, something, fsmothing@email.com, Jordan, 49642
+Joel, Keating, jkeating@email.com, Burbs, 64642
+James, Bond, jamesbond@email.com, UK, 30642
