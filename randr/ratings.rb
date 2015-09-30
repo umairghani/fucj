@@ -1,6 +1,8 @@
 #!/usr/local/bin/ruby
 
 require 'cassandra'
+require 'json'
+require 'rubygems'
 
 #connect to cassandra default is localhost
 cluster = Cassandra.cluster
@@ -9,31 +11,32 @@ keyspace = 'fucj'
 session	 = cluster.connect(keyspace)
 
 #get test data
-#testEmail = 'jkeating@email.com'
-testEmail = 'bensmith@email.com'
-#testEmail = 'fsmothing@email.com'
-#testEmail = 'ughani@email.com'
-#testEmail = 'corysmith@email.com'
+testEmail = 'rschmidt7@sitemeter.com'
+#testEmail = 'bensmith@email.com'
+
 add = Array.new
 usercom = Array.new
-rateArray = Array.new
-rateArray = IO.readlines('rate.txt')
-userArray = Array.new
-userArray = IO.readlines('newuser.txt')
+userData = File.read('USER.json')
+userJdata = JSON.parse(userData)
+rateData = File.read('RATE.json')
+rateJdata = JSON.parse(rateData)
 
-def input_new_user (userArray,session)
-   userArray.each do |user|
-     firstname, lastname, email, city, zip = user.split(',')
-     zip.to_i
-     session.execute("INSERT INTO users (firstname, lastname, email, city, zip) VALUES ('#{firstname}', '#{lastname}', '#{email}', '#{city}', #{zip})");
+def input_new_user (userJdata,session)
+   userJdata.each do |line|
+     firstname = line["firstname"]
+     lastname = line["lastname"]
+     email = line["email"]
+     city = line["city"]
+     session.execute("INSERT INTO users (firstname, lastname, email, city) VALUES ('#{firstname}', '#{lastname}', '#{email}', '#{city}')");
    end
 end 
 
-def input_rating(rateArray,session)
-   rateArray.each do |rate|
-     email, notes, score = rate.split(',')
-     score.to_i
+def input_rating(rateJdata,session)
+   rateJdata.each do |line|
      date = Time.now.to_f
+     email = line["email"]
+     score = line["score"]
+     notes = line["notes"]
      session.execute("INSERT INTO rating (date, email, score, notes) VALUES ('#{date}', '#{email}', #{score}, '#{notes}')");
    end
 end 
@@ -55,10 +58,15 @@ def user_comments(session,testEmail,usercom)
       return(usercom) 
 end
 
-input_rating(rateArray,session)
-input_new_user(userArray,session)
+
+input_rating(rateJdata,session)
+input_new_user(userJdata,session)
 myavg = average_rating(testEmail,session,add)
   puts "Users average score: #{myavg}" 
 usercom = user_comments(session,testEmail,usercom)
   puts usercom.each { |x| puts x } 
+
+
+
+
 
