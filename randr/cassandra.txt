@@ -1,0 +1,7 @@
+use fucj;
+SELECT * FROM users;
+CREATE TABLE users (firstname text, lastname text, city text, email text, zip int, PRIMARY KEY (email));
+CREATE TABLE rating (date text, email text, score int, notes text, PRIMARY KEY (date));
+DROP TABLE users;
+DROP TABLE rating;
+CREATE INDEX email ON rating(email);

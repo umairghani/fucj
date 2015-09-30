@@ -1,6 +1,8 @@
 #!/usr/local/bin/ruby
 
 require 'cassandra'
+require 'json'
+require 'rubygems'
 
 #connect to cassandra default is localhost
 cluster = Cassandra.cluster
@@ -16,21 +18,27 @@ testEmail = 'bensmith@email.com'
 #testEmail = 'corysmith@email.com'
 add = Array.new
 usercom = Array.new
-rateArray = Array.new
-rateArray = IO.readlines('rate.txt')
-userArray = Array.new
-userArray = IO.readlines('newuser.txt')
+string = IO.readlines('RATE.json')
+#userHash = IO.readlines('USER.json')
 
-def input_new_user (userArray,session)
-   userArray.each do |user|
+parsed = JSON.parse(string)
+p parsed["user"][0]
+
+
+#hash = JSON.parse("#{rateHash}")
+#puts hash[0]['email']
+#hash = JSON.parse(rateHash) 
+
+def input_new_user (userHash,session)
+   userHash.each do |user|
      firstname, lastname, email, city, zip = user.split(',')
      zip.to_i
      session.execute("INSERT INTO users (firstname, lastname, email, city, zip) VALUES ('#{firstname}', '#{lastname}', '#{email}', '#{city}', #{zip})");
    end
 end 
 
-def input_rating(rateArray,session)
-   rateArray.each do |rate|
+def input_rating(rateHash,session)
+   rateHash.each do |rate|
      email, notes, score = rate.split(',')
      score.to_i
      date = Time.now.to_f
@@ -55,12 +63,13 @@ def user_comments(session,testEmail,usercom)
       return(usercom) 
 end
 
-input_rating(rateArray,session)
-input_new_user(userArray,session)
-myavg = average_rating(testEmail,session,add)
-  puts "Users average score: #{myavg}" 
-usercom = user_comments(session,testEmail,usercom)
-  puts usercom.each { |x| puts x } 
+
+#input_rating(rateHash,session)
+#input_new_user(userHash,session)
+#myavg = average_rating(testEmail,session,add)
+#  puts "Users average score: #{myavg}" 
+#usercom = user_comments(session,testEmail,usercom)
+#  puts usercom.each { |x| puts x } 
 
 
 
