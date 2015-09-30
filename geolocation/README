@@ -1,0 +1,7 @@
+Requires geopy
+https://github.com/geopy/geopy
+https://pypi.python.org/pypi/geopy
+
+Example output:
+>>> location.raw
+{u'display_name': u'Flatiron Building, 175, 5th Avenue, Flatiron, New York County, NYC, New York, 10010, United States of America', u'importance': 0.68300331552197, u'place_id': u'117092201', u'lon': u'-73.9896297241625', u'lat': u'40.7410861', u'osm_type': u'way', u'licence': u'Data \xa9 OpenStreetMap contributors, ODbL 1.0. http://www.openstreetmap.org/copyright', u'osm_id': u'264768896', u'boundingbox': [u'40.7407597', u'40.7413004', u'-73.9898714', u'-73.9895013'], u'type': u'attraction', u'class': u'tourism', u'icon': u'https://nominatim.openstreetmap.org/images/mapicons/poi_point_of_interest.p.20.png'}
