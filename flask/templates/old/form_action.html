@@ -1,0 +1,27 @@
+ <html>
+    <head>
+        <title>Handle POST requests with Flask</title>
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <div id="container">
+            <div class="title">
+                <h1>POST request with Flask</h1>
+            </div>
+            <div id="content">
+		<table style="width:100%">
+		<tr>
+                <td>Hello <strong>{{name}}</strong> ({{email}})!</td>
+                <td>average:<strong>{{myavg}}</strong></td>
+		<td> 
+		{% for com in comments %}
+			<p> {{ com }} </p>
+		{% endfor %}
+		</select>
+		</tr>
+		</table>
+            </div>
+            </div>
+        </div>
+    </body>
+</html>
