@@ -35,8 +35,8 @@ def input_rating(rateJdata,session)
    end
 end
 
-input_new_user(userJdata,session)
-puts "input user done"
+#input_new_user(userJdata,session)
+#puts "input user done"
 input_rating(rateJdata,session)
 puts "input user done"
 

@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>Handle POST requests with Flask</title>
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='bootstrap.css') }}">
+    </head>
+    <body>
+        <div id="container">
+            <div class="title">
+                <h1>Register here:</h1>
+            </div>
+            <div id="content">
+
+		  {% from "_formhelpers.html" import render_field %}
+                       <form method=post action="/register/">
+                          <dl>
+                                {{ render_field(form.username) }}
+                                {{ render_field(form.email) }}
+                                {{ render_field(form.password) }}
+                                {{ render_field(form.confirm) }}
+                                {{ render_field(form.accept_tos) }}
+                          </dl>
+                          <p><input type=submit value=Register>
+                        </form>
+            </div>
+            </div>
+        </div>
+    </body>
+</html>
+ 

@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>Handle POST requests with Flask</title>
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='bootstrap.css') }}">
+    </head>
+    <body>
+        <div id="container">
+            <div class="title">
+                <h1>profile</h1>
+            </div>
+            <div id="content">
+                <form method="post" action="{{ url_for('profile') }}">
+                  <th>Hello,</th>
+                  <th>({{whoami}})!</th>
+                  <label for="yourname">Choose an option:</label>
+                  <input type="submit" value="users"/>
+                  <input type="submit" value="email"/>
+		</form>
+                <form method="post" action="{{ url_for('profile') }}">
+                  <input type="submit" value="update profile"/>
+		</form>
+            </div>
+            </div>
+            <div class="title">
+                </form>
+            </div>
+            </div>
+            </div>
+        </div>
+    </body>
+</html>
+ 

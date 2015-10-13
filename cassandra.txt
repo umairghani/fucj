@@ -1,0 +1,11 @@
+use fucj;
+SELECT * FROM users;
+CREATE TABLE users (firstname text, lastname text, city text, email text, zip int, PRIMARY KEY (email));
+CREATE TABLE rating (date text, email text, score int, notes text, PRIMARY KEY (date));
+DROP TABLE users;
+DROP TABLE rating;
+DROP TABLE profile;
+CREATE INDEX email ON rating(email);
+CREATE TABLE profile (username text, date text, email text, firstname text, lastname text, phone text, birthdate text, location text, about text, password text, PRIMARY KEY (username));
+CREATE INDEX username ON profile(username);
+INSERT INTO profile (username, date, email, firstname, lastname, phone, birthdate, location, about, password) VALUES ('corysmith', '10122015', 'cnsmith@gmail.com', '', '', '', '', '', '', '');

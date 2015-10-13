@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>Handle POST requests with Flask</title>
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <div id="container">
+            <div class="title">
+                <h1>Register here:</h1>
+            </div>
+            <div id="content">
+                <form method="post" action="{{ url_for('hello') }}">
+                  <label for="firstname">firstname:</label>
+                  <input type="text" name="firstname" /><br />
+                  <label for="lastname">lastname:</label>
+                  <input type="text" name="lastname" /><br />
+                  <label for="email">email:</label>
+                  <input type="text" name="email" /><br />
+                  <label for="city">city:</label>
+                  <input type="text" name="city" /><br />
+                  <label for="zipcode">zipcode:</label>
+                  <input type="text" name="zipcode" /><br />
+                  <input type="submit" />
+                </form>
+            </div>
+            <div class="title">
+                <h1>Flask code</h1>
+            </div>
+                <code><pre>
+@app.route('/')
+def form():
+    return render_template('form_submit.html')
+                </pre></code>
+            </div>
+        </div>
+    </body>
+</html>
+ 
