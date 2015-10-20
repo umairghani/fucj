@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+
+<h1>Hello, {{ myemail }}!</h1>
+<hr></hr>
+  
+Write reviews for:
+<br>
+{% for post in myprofile%}
+	<a href="/user/{{post['date']}}">{{post['email']}}</a> 
+	<br>
+{% endfor %}
+
+{% endblock %}

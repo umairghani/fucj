@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>{{ myprofile['email'] }}!</h1>
+<hr>ID: {{ myprofile['date'] }}</hr>
+
+<form method=post action="/user/{{ myid }}">
+<br>
+<br>
+  <table>
+  <tr>
+    <dl>
+    <input type="text" placeholder="Write {{ myprofile['firstname'] }} a review!" name="comments" class="form-control" value="{{ request.form.comments }}">
+  <td>
+
+
+<div class="form-group">
+  <label class="dropdown-menu" name="rating" class="dropdown-toggle" for="rating">Rating</label>
+  <br>
+    <select name="rating" id="rating" class="form-control">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select> 
+  </div>
+</div>
+
+<input type=submit value=update>
+
+  </td>
+    </dl>
+  </tr>
+  </table>
+</form>
+  
+<h3>Reviews</h3>
+	{% for post in myreviews %}
+		<b>{{ post['reviewer'] }}</b> score: 
+		{{ post['rating'] }} 
+		{{ post['comments'] }}
+		<br>
+		<br>
+	{% endfor %}
+
+{% endblock %}

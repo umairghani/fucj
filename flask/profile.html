@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<form method=post action="/profile">
+<br>
+<br>
+  <table>
+  <tr>Profile</tr>
+  <tr>
+    <dl>
+    Firstname: <input type="text" placeholder="{{ myprofile['firstname'] }}" name="firstname" class="form-control" value="{{ request.form.firstname }}">
+    Lastname: <input type="text" placeholder="{{ myprofile['lastname'] }}" name="lastname" class="form-control" value="{{ request.form.lastname }}">
+    Email: <input type="text" placeholder="{{ myprofile['email'] }}" name="email" class="form-control" value="{{ request.form.email }}">
+    Birthdate: <input type="text" placeholder="{{ myprofile['birthdate'] }}" name="birthdate" class="form-control" value="{{ request.form.birthdate }}">
+    Location:<input type="text" placeholder="{{ myprofile['location'] }}" name="location" class="form-control" value="{{ request.form.location }}">
+    Phone: <input type="text" placeholder="{{ myprofile['phone'] }}" name="phone" class="form-control" value="{{ request.form.phone }}">
+    <input type=submit value=update>
+    </dl>
+  </tr>
+  </table>
+</form>
+
+
+{% endblock %}
+
+
+
+

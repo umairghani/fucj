@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<form method=post action="/listing">
+<br>
+<br>
+  <table>
+  <tr>Listings</tr>
+<br>
+  <tr>
+    <dl>
+    Summary: <input type="text" placeholder="summary" name="summary" class="form-control" value="{{ request.form.summary}}">
+    price: <input type="text" placeholder="price" name="price" class="form-control" value="{{ request.form.price}}">
+    description: <input type="text" placeholder="description" name="description" class="form-control" value="{{ request.form.description}}">
+    location: <input type="text" placeholder="location" name="location" class="form-control" value="{{ request.form.location}}">
+    <input type=submit value=update>
+    </dl>
+  </tr>
+  </table>
+</form>
+
+
+{% endblock %}
+
+
+
+

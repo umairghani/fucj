@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+	<h1>Homepage</h1>
+	<p>Do you want to your <a href="{{ url_for('profile') }}">Profile?</a>
+	<p>Click <a href="/logout">here</a> to logout.</p>
+	<strong>Title:</strong> {{ title }} <br>
+
+	<h3>Posts</h3>
+		{% for post in posts %}
+			<strong>Paragraph:</strong> {{ post}} <br>
+			<br>
+		{% endfor %}
+
+{% endblock %}
